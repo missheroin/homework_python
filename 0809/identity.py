@@ -56,9 +56,9 @@ def range_1(num=5):
     i = 0
     while i < num:
         if i % 2 == 0:
-            yield fem_first[random.randint(0, 31)] + ' ' + fem_name[random.randint(0, 31)] + ' ' + fem_second[random.randint(0, 31)]
+            yield fem_first[random.randint(0, 30)] + ' ' + fem_name[random.randint(0, 30)] + ' ' + fem_second[random.randint(0, 30)]
         else:
-            yield male_first[random.randint(0, 31)] + ' ' + male_name[random.randint(0, 31)] + ' ' + male_second[random.randint(0, 31)]
+            yield male_first[random.randint(0, 30)] + ' ' + male_name[random.randint(0, 30)] + ' ' + male_second[random.randint(0, 30)]
         i += 1
 
 
