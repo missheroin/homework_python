@@ -39,16 +39,36 @@ male_second = ['Куприянович', 'Трофимович', 'Ростисл
                'Панкратиевич', 'Сергеевич', 'Яковович', 'Эдуардович']
 
 
+def show(func):
+    def new_func(*args, **kwargs):
+        print('Function name: ', func.__name__)
+        if args:
+            print('Positional arguments in function: ', args)
+            print('Number positional arguments: ', len(args))
+        else:
+            print('This function have positional arguments')
+        if kwargs:
+            print('Keyword arguments in function: ', kwargs)
+            print('Number keyword arguments: ', len(kwargs))
+        else:
+            print('This function have no keyword arguments')
+        result = func(*args, **kwargs)
+        return result
+
+    return new_func
+
+
 def initials(name):
     fio = name.split(' ')
     return fio[0] + ' ' + fio[1][0:1] + '. ' + fio[2][0:1]
 
 
+@show
 def initials_more(names):
     return [initials(i) for i in names]
 
 
-def gen_names(name, num):
+def gen_names(name, num=5):
     return [name for i in range(num)]
 
 
@@ -56,20 +76,14 @@ def range_1(num=5):
     i = 0
     while i < num:
         if i % 2 == 0:
-            yield fem_first[random.randint(0, 30)] + ' ' + fem_name[random.randint(0, 30)] + ' ' + fem_second[random.randint(0, 30)]
+            yield fem_first[random.randint(0, 30)] + ' ' + fem_name[random.randint(0, 30)] + ' ' + fem_second[
+                random.randint(0, 30)]
         else:
-            yield male_first[random.randint(0, 30)] + ' ' + male_name[random.randint(0, 30)] + ' ' + male_second[random.randint(0, 30)]
+            yield male_first[random.randint(0, 30)] + ' ' + male_name[random.randint(0, 30)] + ' ' + male_second[
+                random.randint(0, 30)]
         i += 1
 
 
-ranger = range_1(10)
+ranger = range_1()
 
-for name in ranger:
-    print(name)
-
-print(gen_names('Кузина Ангелина Сергеевна', 10))
-
-# создать генератор для последовательности имен
-# def gen_names(num):
-# 1) name -> [names] +
-# 2) generator(yield) +
+print(initials_more([i for i in ranger]))
